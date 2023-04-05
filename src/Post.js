@@ -7,6 +7,17 @@ import{db, auth} from './Firebase.js';
 export default function Post(props, info){
   const[comentarios,setComentarios] = useState([]);
 
+  function apagarComentario(e){
+    e.preventDefault();
+     db.collection('posts').doc(props.id).collection('comentarios').doc(comentarios[comentarios.length-1].id).delete();
+    setComentarios(comentarios.slice(0,comentarios.length-1)); 
+  }
+
+/*   function apagarPost(e){
+    e.preventDefault();
+    db.collection('posts').doc(props.id).delete();
+  } */
+
   useEffect(()=>{
     db.collection('posts').doc(props.id).collection('comentarios').orderBy('timestamp','asc').onSnapshot(function(snapshot){
       //- desc: o ultimo comentário fica em primeiro. O asc: o ultimo comentário fica em ultimo.
@@ -42,7 +53,10 @@ useEffect(() => {
 return(
 <div className="postSingle" key={info.id}>
 <img src={props.info.image}/>
+  <div className='divPost'>
     <h2 className="tituloPost">Título do post:</h2> 
+{/*     <button className='btnExcluirPost' onClick={(e)=>apagarPost(e)}>Excluir post</button>
+ */}    </div>
 <p className="parageafoPost"><b>{props.info.username}</b>: {props.info.titulo}</p>
 <div className='coments'>
       <h2>Últimos comentários:</h2> 
@@ -63,6 +77,7 @@ return(
 <form onSubmit={(e)=>comentar(props.id,e)}>
   <textarea id={"comentario"+props.id} placeholder='Escreva o seu comentário.'></textarea>
   <input type="submit" value="Comentar!"/>
+  <button className='btnExcluir' onClick={(e)=>apagarComentario(e)}>Excluir comentário</button>
 </form>
 :
 <div></div>

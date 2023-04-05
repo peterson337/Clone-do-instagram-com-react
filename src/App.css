@@ -279,6 +279,7 @@ h2{
   border-radius: 20px;
   padding-left: 10px;
   font-size: 20px;
+  margin-bottom: 10px;
 }
 
 .postSingle input[type=submit]{
@@ -325,6 +326,39 @@ h2{
 
 .footer p{
   
+}
+
+.btnExcluir{
+  margin-left: 10px;
+  padding: 7px;
+  border: 0;
+  border-radius: 20px;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+}
+
+.btnExcluir:hover{
+  background-color: #ff8383;
+  color:black;
+}
+
+.divPost{
+  display: flex;
+  
+}
+
+.btnExcluirPost{
+  margin-left: 10px;
+  margin-top: 13px;
+  height: 20px;
+  background-color: red;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  width: 90px;
+  height: 28px;
+  border: 0;
 }
 
 @media screen and (max-width:768px){
