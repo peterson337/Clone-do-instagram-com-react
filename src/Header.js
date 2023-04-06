@@ -5,6 +5,7 @@ import firebase from 'firebase';
 import {auth, storage, db} from './Firebase.js';
 
 
+
 //< Cabeçario do site.
 export default function Header(props){
 //? Estado da barrinha de progresso.
@@ -13,7 +14,6 @@ export default function Header(props){
 //? É atualizado com um arquivo é escolhido em tempo real.
   const[file,setFile] = useState(null);
   
-
 //>  Funbção para criar conta
   function criarConta(e){
 //+ Evita que um formulário seja enviado ou uma âncora (link) seja 
@@ -28,11 +28,13 @@ export default function Header(props){
       // Expressão regular para verificar a força da senha
       const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
       /* 
+        ^:  início da string
     <  (?=.*\d): a senha deve conter pelo menos um dígito.
     <  (?=.*[a-z]): a senha deve conter pelo menos uma letra minúscula.
     <  (?=.*[A-Z]): a senha deve conter pelo menos uma letra maiúscula.
     <  (?=.*[a-zA-Z]): a senha deve conter pelo menos uma letra.
     <  {8,}: a senha deve ter pelo menos 8 caracteres de comprimento.
+        $: fim da string
 
     ! Caso queira colocar duas letras minuscula:
     ?  (?=.*[a-z].*[a-z] exige que haja pelo menos duas letras minúsculas na senha) 
@@ -43,7 +45,7 @@ export default function Header(props){
     }
 
     if (!checkPasswordStrength(senha)) {
-      alert('A sua senha é fraca, precisa conter pelo menos 8 caracteres, incluindo uma letra maiúscula e uma letra minúscula.');
+      alert('A sua senha é fraca, precisa conter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula e um número.');
       return;
     }
 //-               Criar conta firebase.
@@ -75,7 +77,7 @@ export default function Header(props){
     }).catch((err)=>{
       alert(err.message);
     })
-
+    
   }
 
   function deslogar(e){
@@ -207,9 +209,10 @@ export default function Header(props){
       (props.user)?
       <div className='header__logoInfo'>
       <span><b>{"Olá "+ props.user +", Bem-vindo"}</b></span>
-
       <a onClick ={(e)=>abrirModalUpload(e)} href="#">Postar!</a>
       <button className='deslogar' onClick={(e)=>deslogar(e)}>deslogar!</button>
+      
+
       
       </div>
         :

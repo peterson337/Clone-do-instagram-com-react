@@ -28,8 +28,7 @@ body{
 .header__logo{
   position: relative;
   margin-right: 15%;
-  /* text-align: right;
-  width: 30%; */
+  width: 30%; 
   color: black;
   text-decoration: none;
 }
@@ -53,10 +52,10 @@ body{
   background-color: #0095f6;
   color: white;
   border: 0;
-  height: 20px;
-  padding: 0px 7px;
+  height: 25px;
+  padding: 0px 10px;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 20px;
   font-size: 13px;
 }
 
@@ -320,12 +319,50 @@ h2{
   width:100%;
   background-color:white;
   color: black;
-  text-align:center; 
-  padding:15px;
+  padding:40px;
+/*   justify-content: center;
+  text-align:center;  */
+}
+
+
+.h3{
+ padding-bottom: 15px;
+ text-align: center;
+ border-bottom: 1px solid black;
+
+}
+
+.teste{
+  margin: 0 20%;
 }
 
 .footer p{
-  
+  margin-top: 25px;
+  text-align: center;
+}
+
+.linkDiv{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 25px;
+  font-size: 14px;
+}
+
+.link{
+  text-decoration: none;
+  background-color: #0095f6;
+  padding: 8px;
+  color: white;
+  border-radius: 20px;
+  border: 0;
+  margin-left: 1%;
+}
+
+.link:hover{
+  background-color: #7acbff;
+  color:black;
 }
 
 .btnExcluir{
@@ -361,6 +398,11 @@ h2{
   border: 0;
 }
 
+.btnExcluirPost:hover{
+  background-color: #ff8383;
+  color:black;
+}
+
 @media screen and (max-width:768px){
   .deslogar{
     width: 40%;
@@ -372,6 +414,31 @@ h2{
     background-color:white;
     color: black;
     padding:20px;
+  }
+
+  .linkDiv{
+    display: flex;
+    flex-direction: column;
+    max-width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+  }
+
+  .link{
+    margin-top: 10px;
+    width: 100%;
+    justify-content: center;
+
+  }
+
+  .teste{
+    margin: 0 5%;
+  }
+
+  .footer p{
+    text-align: center;
   }
 
 }
