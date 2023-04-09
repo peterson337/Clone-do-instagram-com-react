@@ -17,7 +17,7 @@ export default  function App() {
   }
     })
   },[])
-//<  serve para atualizar estado so post quando alguma coisa é inserido, excluido e atualizado.
+//<  serve para atualizar estado do post quando alguma coisa é inserido, excluido e atualizado.
 db.collection('posts').orderBy('timestamp','desc').onSnapshot(function(snapshot){
   setPosts(snapshot.docs.map(function(document){
     return{id:document.id,info:document.data()}
@@ -34,7 +34,7 @@ db.collection('posts').orderBy('timestamp','desc').onSnapshot(function(snapshot)
       })
     }
     <Footer></Footer>
-   
+
     </div>
   );
 }

@@ -5,7 +5,6 @@ import firebase from 'firebase';
 import {auth, storage, db} from './Firebase.js';
 
 
-
 //< Cabeçario do site.
 export default function Header(props){
 //? Estado da barrinha de progresso.
@@ -64,11 +63,46 @@ export default function Header(props){
     });    
   }
 
+
+
+  function abrirModalLogar(e){
+    e.preventDefault();
+    let modal = document.querySelector('.abrirModalLogar');
+      modal.style.display = "block";
+
+   }
+
+   function fecharModalLogar(){
+    let modal = document.querySelector('.abrirModalLogar');
+      modal.style.display = "none";
+
+   }
+
+   function modalLogar(e){
+    e.preventDefault();
+   }
+
+
   //>  Funbção para logar na conta criada.
   function logar(e){
     e.preventDefault();
     let email = document.getElementById('email-login').value;
     let senha = document.getElementById('senha-login').value;
+    auth.signInWithEmailAndPassword(email,senha)
+    .then((auth)=>{
+      props.setUser(auth.user.displayName);
+      alert("Logado com sucesso");
+      window.location.href="/";
+    }).catch((err)=>{
+      alert(err.message);
+    })
+    
+  }
+
+  function logarMobile(e){
+    e.preventDefault();
+    let email = document.getElementById('emailLoginMobile').value;
+    let senha = document.getElementById('senhaLoginMobile').value;
     auth.signInWithEmailAndPassword(email,senha)
     .then((auth)=>{
       props.setUser(auth.user.displayName);
@@ -161,8 +195,8 @@ export default function Header(props){
           alert("Upload realizado com sucesso!");
    //<   Reseta o formulário       
           document.getElementById('form-upload').reset();
-          fecharModalUpload();
-
+          fecharModalUpload();        
+        
         });        
       }      
     )};
@@ -199,37 +233,62 @@ export default function Header(props){
             </div>
           </div>
 
-    <div className='center'>
-        <div className='header__logo'>
-        <a href="#" style={{textDecoration:'none', color:'black'}}> Logo </a>
-        {/*         <a href="#"> <img src={logo} /> </a> */}
-        </div>
+  <div className='center'>
+  <div className='header__logo'>
+    <a href="#" style={{textDecoration:'none', color:'black', marginLeft: '30px'}}>Logo</a>
+  </div>
+  {
+(props.user && window.innerWidth < 768) ?
+<div>
+<div className='header__logoInfo'>
+<span><b>{"Olá " + props.user + ", Bem-vindo"}</b></span>
+<a onClick={(e) => abrirModalUpload(e)} href="#">Postar!</a>
+<button className='deslogar' onClick={(e) => deslogar(e)}>deslogar!</button>
+</div>
 
-    {
-      (props.user)?
-      <div className='header__logoInfo'>
-      <span><b>{"Olá "+ props.user +", Bem-vindo"}</b></span>
-      <a onClick ={(e)=>abrirModalUpload(e)} href="#">Postar!</a>
-      <button className='deslogar' onClick={(e)=>deslogar(e)}>deslogar!</button>
-      
-
-      
+</div>
+:
+(window.innerWidth < 768) ?
+  <div>
+    <div className='btn__criarContaMobile'>
+      <a href="#" onClick={(e) => abrirModalCriarConta(e)}>Criar conta!</a> 
+    </div>
+    <button type='button' onClick={(e) => abrirModalLogar(e)}>Logar</button> 
+    <div className='abrirModalLogar'>
+      <div className="modalLogar">
+        <div className='closeModalCriar' onClick={() => fecharModalLogar()}>X</div>
+        <h2>Logar na sua conta</h2>
+        <form onSubmit={(e) => logarMobile(e)}>
+          <input id="emailLoginMobile" type="text" placeholder='Login...'/>
+          <input id="senhaLoginMobile" type="password" placeholder='Senha...'/>
+          <input id='submitLoginMobile' type="submit" name="acao" value='Logar!'/>
+        </form>
       </div>
-        :
-        <div className="header__loginForm">
-      <form onSubmit={(e)=>logar(e)}>
+    </div>
+  </div>
+: 
+
+(props.user) ?
+  <div className='header__logoInfo'>
+    <span><b>{"Olá " + props.user + ", Bem-vindo"}</b></span>
+    <a onClick={(e) => abrirModalUpload(e)} href="#">Postar!</a>
+    <button className='deslogar' onClick={(e) => deslogar(e)}>deslogar!</button>
+  </div>
+  :
+  <div className="header__loginForm">
+    <form onSubmit={(e) => logar(e)}>
       <input id="email-login" type="text" placeholder='Login...'/>
       <input id="senha-login" type="password" placeholder='Senha...'/>
       <input type="submit" name="acao" value='Logar!'/>
-      
-
     </form>
-    <div className='btn__criarConta'>
-     <a href="#" onClick={(e)=>abrirModalCriarConta(e)}>Criar conta!</a> 
-    </div>
-    </div>
-      }
-    </div>
+
+<div className='btn__criarConta'>
+<a href="#" onClick={(e) => abrirModalCriarConta(e)}>Criar conta!</a> 
+</div>
+  </div>
+}
+
+</div>
     </div>
     </div>
     )

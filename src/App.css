@@ -97,6 +97,7 @@ text-decoration: underline;
   cursor: pointer;
   border-radius: 10px;
   font-size: 14px;
+  
 }
 
 .header__logoInfo a:hover{
@@ -320,8 +321,6 @@ h2{
   background-color:white;
   color: black;
   padding:40px;
-/*   justify-content: center;
-  text-align:center;  */
 }
 
 
@@ -403,7 +402,117 @@ h2{
   color:black;
 }
 
+
+
 @media screen and (max-width:768px){
+
+  .center{
+    padding: 0;
+  }
+
+  [type='button']{
+    background-color: #0095f6;
+    color: white;
+    border: 0;
+    height: 25px;
+    padding: 0px 20px;
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 13px;
+    margin-right: 4px;
+  }
+
+
+  .header__logoInfo{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .header__logoInfo span{
+    margin-left: -2px;
+  }
+
+
+  .btn__criarContaMobile a{
+    font-size: 14px;
+    margin: 0 17px;
+    text-decoration: none;
+    color: #0095f6;
+  }
+  .btn__criarContaMobile{
+    display: inline-block;
+  }
+
+  .btn__criarContaMobile a:hover{
+    color: red;
+    text-decoration: underline;
+  }
+  
+  .btn__criarConta a{
+      display: none;
+  }
+  
+  .formUpload input{
+    margin-top: 10px;
+  }
+  
+  .formUpload input[type=submit]{
+  }
+  
+  .abrirModalLogar{
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+  }
+  
+  .modalLogar{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    background-color: white;
+    padding: 20px;
+    width:80%;
+    max-width:700px;
+    text-align: center;
+    border-radius: 20px;
+  }
+
+  #emailLoginMobile,
+  #senhaLoginMobile{
+    width: 240px;
+    margin-right: 5px;
+    margin-left: 11px;
+    height: 30px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    padding-left: 10px;
+    border-radius: 20px;
+    display: flex;
+  }
+
+  #submitLoginMobile{
+    background-color: #0095f6;
+    color: white;
+    border: 0;
+    height: 30px;
+    padding: 0px 100px;
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 13px;
+  }
+
+  #submitLoginMobile:hover{
+    background-color: #0095f6;
+  }
+
   .deslogar{
     width: 40%;
   }
