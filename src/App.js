@@ -1,9 +1,9 @@
+import React from 'react';
 import './App.css';
 import {useEffect, useState} from 'react';
 import{db, auth} from './Firebase.js';
 import Header from './Header.js';
 import Post from './Post';
-import Footer from './footer'
 
 export default  function App() {
   const [user, setUser] = useState();
@@ -33,8 +33,6 @@ db.collection('posts').orderBy('timestamp','desc').onSnapshot(function(snapshot)
         )
       })
     }
-    <Footer></Footer>
-
     </div>
   );
 }
